@@ -1,0 +1,25 @@
+{
+  "name": "components-library",
+  "description": "A simple repository with components",
+  "main": "webpack.config.js",
+  "authors": [
+    "Duber Montoya <dfm555@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Angular2",
+    "Components",
+    "library"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
