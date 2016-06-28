@@ -9,7 +9,7 @@
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080  --content-base src",
     "start": "npm run server",
-    "gulp": "gulp watch --run start"
+    "gulp": "gulp watch"
   },
   "contributors": [
     "Duber Montoya <dfm555@gmail.com>"
