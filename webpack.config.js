@@ -17,6 +17,19 @@ var webpackConfig = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+    //new webpack.IgnorePlugin(/require_optional/),
+    //new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false, warning: false }),
+    new webpack.ContextReplacementPlugin(/require_optional$/, /^$/),
+    //new webpack.ContextReplacementPlugin(/^~/, /^$/),
+    // new webpack.ContextReplacementPlugin(/require_optional\/$/, /^$/),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   },
+    //   mangle: {
+    //     except: ['$super', '$', 'exports', 'require']
+    //   }
+    // })
   ],
 
   module: {
@@ -26,12 +39,15 @@ var webpackConfig = {
       { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.json$/, loader: 'json-loader' },
+      { test: /.node$/, loader: 'node-loader' }
 
     ]
   }
-  // ,
+  ,
   // node: {
-  //   fs: 'empty'
+  //   fs: 'empty',
+  //   tls: 'empty',
+  //   net: 'empty'
   // }
 
 };
@@ -74,6 +90,7 @@ var defaultConfig = {
 
   devServer: {
     historyApiFallback: true,
+    stats: 'errors-only',
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },
 
