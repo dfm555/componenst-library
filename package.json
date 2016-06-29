@@ -8,8 +8,8 @@
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080  --content-base src",
-    "start": "npm run server",
-    "gulp": "gulp watch"
+    "start": "concurrently --kill-others \"npm run server\" \"npm run gulp\"",
+    "gulp": " gulp watch"
   },
   "contributors": [
     "Duber Montoya <dfm555@gmail.com>"
@@ -41,6 +41,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.3",
     "@angular/platform-server": "2.0.0-rc.3",
     "@angular/router": "3.0.0-alpha.8",
+    "concurrently": "^2.1.0",
     "core-js": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
