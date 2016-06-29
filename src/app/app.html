@@ -1,24 +1,25 @@
-<nav class="nav navbar-default">
-    <a [routerLink]="['/']">
-        Home
-    </a>
-    <a [routerLink]="['/about']">
-        About
-    </a>
-    <!--<a [routerLink]="['/github', 'angular']">-->
-        <!--Github Repos-->
-    <!--</a>-->
+<h3>
+  Angular 2 Seed
+</h3>
+<nav>
+	<a [routerLink]="['/']">
+    Home
+  </a>
+  |
+	<a [routerLink]="['/about']">
+    About
+  </a>
+  |
+	<a [routerLink]="['/github', 'angular']">
+    Github Repos
+  </a>
 </nav>
 
 <main>
-    <router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 </main>
 
 
-<footer class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            © 2016
-        </div>
-    </div>
+<footer>
+  © 2016
 </footer>

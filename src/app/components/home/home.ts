@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import '../../services/db'
 
 @Component({
   selector: 'home',
