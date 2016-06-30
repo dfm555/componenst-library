@@ -1,5 +1,6 @@
 var express     = require('express'),
     path        = require('path'),
+    http        = require( 'http' ),
     bodyParser  = require('body-parser'),
     mongodb     = require('mongodb'),
     ObjectID    = mongodb.ObjectID,
@@ -21,7 +22,7 @@ mongodb.MongoClient.connect( 'mongodb://localhost/components-library', function(
 
   //Initialize the app.
 
-  var server = app.listen( 8081, function(){
+  var server = http.createServer(app).listen( 8081, function(){
     var port = server.address().port;
     console.log( "App now running on port", port );
   } );
@@ -36,13 +37,25 @@ function handleError( res, reason, message, code ){
   res.status( code || 500 ).json( { "error": message } )
 }
 
+//CORS
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+//body parse to json
+
+app.use( bodyParser.json() );
+
 /**
  * /categories
  * GET: finds all contacts
  * POST: create a new category
  */
 
-app.get( '/categories', function( req, res ){
+app.get( '/categories', function( req, res, next ){
   db.collection( CATEGORIES_COLLECTION ).find( {} ).toArray( function ( err, docs ) {
     if ( err ) {
       handleError( res, err.message, 'Failed to get categories.' );
@@ -52,7 +65,7 @@ app.get( '/categories', function( req, res ){
   } );
 } );
 
-app.post('/categories', function ( req, res ) {
+app.post('/categories', function ( req, res, next ) {
   var newCategory = req.body;
   newCategory.createDate = new Date();
 
@@ -64,7 +77,7 @@ app.post('/categories', function ( req, res ) {
     if ( err ) {
       handleError( res, err.message, "Failed to create new category.");
     }else{
-      res.status( 201 ).json( doc.ops[0] );
+      res.status( 201 ).json( docs.ops[0] );
     }
   } );
 });
@@ -76,7 +89,7 @@ app.post('/categories', function ( req, res ) {
  * DELETE: delete category by id
  */
 
-app.get( '/categories:id', function ( req, res ) {
+app.get( '/categories:id', function ( req, res, next ) {
   db.collection( CATEGORIES_COLLECTION ).find( { _id: new ObjectID( req.params.id ) }, function ( err, doc ) {
     if ( err ) {
       handleError( res, err.message, 'Failed to get contact' );
@@ -86,7 +99,7 @@ app.get( '/categories:id', function ( req, res ) {
   } );
 } );
 
-app.put( '/categories:id', function ( req, res ) {
+app.put( '/categories:id', function ( req, res, next ) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
@@ -100,7 +113,7 @@ app.put( '/categories:id', function ( req, res ) {
 
 } );
 
-app.delete( '/categories/:id', function ( req, res ) {
+app.delete( '/categories/:id', function ( req, res, next ) {
   db.collection( CATEGORIES_COLLECTION ).deleteOne( { _id: new Object( req.params.id ) }, function ( err, result ) {
     if ( err ) {
       handleError( res, err.message, "Failed to delete category" )
