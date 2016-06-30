@@ -14,7 +14,11 @@ export class Home {
   constructor( private categories: Categories ) {}
 
   ngOnInit() {
-    this.categories.getCategories('http://localhost:8081/categories/');
+    let data = {
+      name: 'Base'
+    }
+    console.log( this.categories.getCategories( 'http://localhost:8081/categories/' ) );
+    //this.categories.createCategories( 'http://localhost:8081/categories/', data );
   }
 
 }

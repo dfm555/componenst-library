@@ -39,9 +39,9 @@ function handleError( res, reason, message, code ){
 
 //CORS
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use(function( req, res, next ) {
+  res.header( "Access-Control-Allow-Origin", "*" );
+  res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
   next();
 });
 
@@ -55,7 +55,7 @@ app.use( bodyParser.json() );
  * POST: create a new category
  */
 
-app.get( '/categories', function( req, res, next ){
+app.get( '/categories/', function( req, res, next ){
   db.collection( CATEGORIES_COLLECTION ).find( {} ).toArray( function ( err, docs ) {
     if ( err ) {
       handleError( res, err.message, 'Failed to get categories.' );
@@ -65,7 +65,18 @@ app.get( '/categories', function( req, res, next ){
   } );
 } );
 
-app.post('/categories', function ( req, res, next ) {
+app.post('/categories/', function( req, res, next ){
+
+  var category = db.collection( CATEGORIES_COLLECTION )
+    .find( { name: req.params.name }, {}, function ( err, doc ) {
+      if ( doc ){
+        res.status( 200 )
+          .json( { 'message': 'The category exist, Failed to create new category.' } );
+      } else {
+        next();
+      }
+    } );
+}, function ( req, res, next ) {
   var newCategory = req.body;
   newCategory.createDate = new Date();
 
@@ -89,17 +100,17 @@ app.post('/categories', function ( req, res, next ) {
  * DELETE: delete category by id
  */
 
-app.get( '/categories:id', function ( req, res, next ) {
-  db.collection( CATEGORIES_COLLECTION ).find( { _id: new ObjectID( req.params.id ) }, function ( err, doc ) {
+app.get( '/categories/:name', function ( req, res, next ) {
+  db.collection( CATEGORIES_COLLECTION ).find( { name: req.params.name } ).toArray( function ( err, doc ) {
     if ( err ) {
-      handleError( res, err.message, 'Failed to get contact' );
+      handleError( res, err.message, 'Failed to get category' );
     } else {
       res.status( 200 ).json( doc );
     }
   } );
 } );
 
-app.put( '/categories:id', function ( req, res, next ) {
+app.put( '/categories/:id', function ( req, res, next ) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
