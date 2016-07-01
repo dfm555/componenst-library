@@ -27,6 +27,7 @@ export class RepoDetail {
         this.github.getRepoForOrg(this.org, this.repo)
           .subscribe(repoDetails => {
             this.repoDetails = repoDetails;
+            
           });
       }
     });

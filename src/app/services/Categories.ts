@@ -4,24 +4,12 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class Categories {
-  response: any;
+  response: Array<Object>;
   constructor( private http: Http){}
 
   getCategories( url: string ){
-    //noinspection TypeScriptUnresolvedFunction
-    this.http.get( url )
-      .map( data => data.json() )
-      .subscribe( data => this.response = data );
-    //   .subscribe( function ( response ) {
-    //   //console.log( response.json() );
-    // })
-      //.map( res => res.json() )
-      // .subscribe( function( res ) {
-      //   //console.log( res );
-      //   this.response = res;
-      // }  );
-
-    return this.getData;
+    return this.http.get( url )
+      .map( ( res ) => res.json() );
   }
 
   createCategories( url: string, data: Object ){
@@ -44,13 +32,5 @@ export class Categories {
         console.log( response.json() );
       });
   }
-
-  private getData(): any{
-    return this.response;
-  }
-
-
-  
-  
 }
 
