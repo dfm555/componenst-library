@@ -7,8 +7,9 @@
     "postinstall": "npm run typings-install",
     "build": "webpack --inline --colors --progress --display-error-details --display-cached",
     "watch": "npm run build -- --watch",
+    "database": "npm --prefix ./server start",
     "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080  --content-base src",
-    "start": "concurrently --kill-others \"npm run server\" \"npm run gulp\"",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run gulp\" \"npm run database\"",
     "gulp": " gulp watch"
   },
   "contributors": [

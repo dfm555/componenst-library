@@ -9,48 +9,27 @@ export class Categories {
 
   getCategories( url: string ){
     //noinspection TypeScriptUnresolvedFunction
-    this.http.get( url )
-      .map( data => data.json() )
-      .subscribe( data => this.response = data );
-    //   .subscribe( function ( response ) {
-    //   //console.log( response.json() );
-    // })
-      //.map( res => res.json() )
-      // .subscribe( function( res ) {
-      //   //console.log( res );
-      //   this.response = res;
-      // }  );
-
-    return this.getData;
+    return this.http.get( url )
+      .map( res => res.json() )
   }
 
   createCategories( url: string, data: Object ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.post( url, data )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() );
   }
 
   deleteCategories( url: string, id: string  ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.delete( url+id )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() )
   }
 
   updateCategories( url: string, data: any  ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.put( url, data )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() );
   }
 
-  private getData(): any{
-    return this.response;
-  }
-
-
-  
-  
 }
 
