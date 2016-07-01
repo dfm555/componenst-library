@@ -68,8 +68,8 @@ app.get( '/categories/', function( req, res, next ){
 app.post('/categories/', function( req, res, next ){
 
   var category = db.collection( CATEGORIES_COLLECTION )
-    .find( { name: req.body.name }).toArray( function ( err, doc ) {
 
+    .find( { name: req.body.name } ).toArray( function ( err, doc ) {
       if ( doc.length ){
         res.status( 200 )
           .json( { 'message': 'The category exist, Failed to create new category.' } );

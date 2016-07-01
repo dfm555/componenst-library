@@ -1,12 +1,10 @@
-<h3>Home Component</h3>
+<h3>List categories</h3>
 <p>Welcome to Angular Seed</p>
 
 <ul>
-  <li *ngFor="let category of dataCategories">
-    <a href="http://localhost:8081/categories/{{ category.name  }}" target="_blank">
-      {{ category.name }}
-    </a>
-  </li>
+    <li *ngFor=" let category of dataCategories " >
+        <a href="http://localhost:8081/categories/{{ category.name }} " target="_blank">
+            {{ category.name }}
+        </a>
+    </li>
 </ul>
-
-<router-outlet></router-outlet>

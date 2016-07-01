@@ -13,24 +13,20 @@ export class Categories {
   }
 
   createCategories( url: string, data: Object ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.post( url, data )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() );
   }
 
   deleteCategories( url: string, id: string  ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.delete( url+id )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() );
   }
 
   updateCategories( url: string, data: any  ){
+    //noinspection TypeScriptUnresolvedFunction
     return this.http.put( url, data )
-      .subscribe( function ( response ) {
-        console.log( response.json() );
-      });
+      .map( res => res.json() );
   }
 }
-
