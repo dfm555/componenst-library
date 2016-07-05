@@ -22,6 +22,7 @@
     "css-loader": "^0.23.1",
     "es6-promise": "3.0.2",
     "es6-shim": "0.35.0",
+    "gulp-clean-css": "^2.0.10",
     "json-loader": "^0.5.4",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.2",
@@ -45,7 +46,9 @@
     "concurrently": "^2.1.0",
     "core-js": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "^2.3.2",
+    "gulp-typescript": "^2.13.6",
     "ie-shim": "^0.1.0",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "~0.6.12"

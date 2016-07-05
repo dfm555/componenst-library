@@ -3,5 +3,5 @@
 /dist/
 /npm-debug.log
 /typings/
-/src/public/components/
+/src/public/libs/
 /server/node_modules/
