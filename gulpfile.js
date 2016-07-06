@@ -31,7 +31,8 @@ gulp.task('typescript', function () {
       noImplicitAny: true,
       target: 'ES5',
       module: 'commonjs',
-      removeComments: true
+      removeComments: true,
+      experimentalDecorators: true
     }))
     .pipe( gulp.dest( function( file ) {
       stylePath =  file.base;
@@ -47,7 +48,7 @@ gulp.task('watch', function() {
   gulp.watch('./src/app/components/**/*.scss', ['sass'])
   gulp.watch('./src/app/components/**/*.ts', ['typescript'])
   gulp.watch(['./src/public/css/global/',
-    './src/public/css/global/**/*.scss',
+    './src/public/css/global/**',
     '!./src/public/css/*.css'],
     ['globalCSS'])
   gulp.watch( ['./src/app/components/**/',
