@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Categories {
   response: Array<Object>;
-  constructor( private http: Http){}
+  constructor( private http: Http ){}
 
   getCategories( url: string ){
     return this.http.get( url )
