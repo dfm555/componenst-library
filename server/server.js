@@ -39,11 +39,12 @@ function handleError( res, reason, message, code ){
 
 //CORS
 
-app.use(function( req, res, next ) {
+app.use( function( req, res, next ) {
   res.header( "Access-Control-Allow-Origin", "*" );
+  res.header( "Access-Control-Allow-Methods", "PUT, POST, GET" );
   res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
   next();
-});
+} );
 
 //body parse to json
 
@@ -119,7 +120,7 @@ app.put( '/categories/:id', function ( req, res, next ) {
     if ( err ) {
       handleError( res, err.message )
     } else {
-      res.status( 200 ).end();
+      res.status( 200 ).json( doc );
     }
   } );
 
@@ -130,7 +131,7 @@ app.delete( '/categories/:id', function ( req, res, next ) {
     if ( err ) {
       handleError( res, err.message, "Failed to delete category" )
     } else {
-      res.status( 204 ).end();
+      res.status( 204 ).json( result );
     }
   } );
 } );

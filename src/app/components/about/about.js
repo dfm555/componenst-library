@@ -7,16 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var About = (function () {
-    function About(http) {
+    function About() {
     }
-    About.prototype.ngOnInit = function () {
-    };
     About = __decorate([
         core_1.Component({
             selector: 'about',
-            pipes: [],
-            providers: [],
-            directives: [],
             styleUrls: ['./about.css'],
             templateUrl: './about.html'
         })

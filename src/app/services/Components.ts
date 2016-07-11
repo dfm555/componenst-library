@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
 import { Categories } from './Categories'
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class Components{
 
   constructor( private categories: Categories ) {}
 
-  createComponent( idCategory: string, data: Object ){
+  createComponent( idCategory: string, nameCategory: string, data: Object ){
 
-    this.categories.updateCategories( '', data )
+    let doc = {
+      name: nameCategory,
+      component: data
+    };
+
+
+    return this.categories.updateCategories( 'http://localhost:8081/categories/'+idCategory, doc )
 
   }
 }
