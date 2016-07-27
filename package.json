@@ -33,7 +33,6 @@
     "gulp-typescript": "^2.13.6",
     "html-webpack-plugin": "^2.22.0",
     "http": "0.0.0",
-    "json-loader": "^0.5.4",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.2",
     "source-map-loader": "^0.1.5",

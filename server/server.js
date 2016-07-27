@@ -67,10 +67,9 @@ app.get( '/categories/', function( req, res, next ){
 } );
 
 app.post('/categories/', function( req, res, next ){
-
-  var category = db.collection( CATEGORIES_COLLECTION )
-
-    .find( { name: req.body.name } ).toArray( function ( err, doc ) {
+  
+    db.collection( CATEGORIES_COLLECTION )
+      .find( { name: req.body.name } ).toArray( function ( err, doc ) {
       if ( doc.length ){
         res.status( 200 )
           .json( { 'message': 'The category exist, Failed to create new category.' } );
@@ -86,7 +85,8 @@ app.post('/categories/', function( req, res, next ){
     handleError( res, 'Invalid category input', "Must provide a name", 400 )
   }
 
-  db.collection( CATEGORIES_COLLECTION ).insertOne( newCategory, function ( err, docs ) {
+  db.collection( CATEGORIES_COLLECTION )
+    .insertOne( newCategory, function ( err, docs ) {
     if ( err ) {
       handleError( res, err.message, "Failed to create new category.");
     }else{
@@ -116,7 +116,9 @@ app.put( '/categories/:id', function ( req, res, next ) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection( CATEGORIES_COLLECTION ).updateOne( { _id: new ObjectID( req.params.id ) }, updateDoc, function ( err, doc ) {
+  db.collection( CATEGORIES_COLLECTION ).updateOne( { _id: new ObjectID( req.params.id ) },
+    { $push: {'components' : updateDoc } },
+    function ( err, doc ) {
     if ( err ) {
       handleError( res, err.message )
     } else {
