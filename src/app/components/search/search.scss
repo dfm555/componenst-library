@@ -1,0 +1,11 @@
+$grayBar: #f1ede9;
+$textRed: #e70505;
+.Search{
+  background-color: $grayBar;
+  
+  &-label{
+    color: $textRed;
+    text-transform: uppercase;
+  }
+}
+

@@ -1,1 +1,18 @@
-<p>This is the home component!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="">
+            <carousel [interval]="NextPhotoInterval" [noWrap]="noLoopSlides" [noTransition]="noTransition">
+                <slide *ngFor="let slidez of slides; let index=index"
+                       [active]="slidez.active">
+                    <img ngClass="Slide-img" [src]="slidez.image" [alt]="slidez.alt">
+
+                    <div class="carousel-caption">
+                        <h3>Slide {{index + 1}}</h3>
+                        <p>{{slidez.text}}</p>
+                    </div>
+                </slide>
+            </carousel>
+        </div>
+    </div>
+</div>
+<search></search>

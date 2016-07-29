@@ -1,4 +1,4 @@
 .Navbar {
-  background-color: #ff0000; }
-  .Navbar > ul > li.active {
-    background-color: blue; }
+  background-color: #000000; }
+  .Navbar .navbar-nav {
+    text-transform: uppercase; }

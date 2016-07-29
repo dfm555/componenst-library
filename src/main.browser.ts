@@ -1,5 +1,7 @@
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { bootstrap } from '@angular/platform-browser-dynamic';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
+
 import { HTTP_PROVIDERS } from '@angular/http';
 // import {enableProdMode} from '@angular/core';
 
